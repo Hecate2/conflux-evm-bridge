@@ -10,7 +10,7 @@ describe('UpgradeableERC20', function () {
     const erc20 = await ethers.getContractFactory('UpgradeableERC20');
 
     const beacon = await upgrades.deployBeacon(erc20V1, {
-      unsafeAllow: ['constructor'],
+      // unsafeAllow: ['constructor'],
     });
     const instance = await upgrades.deployBeaconProxy(beacon, erc20V1, [
       'Test Token',
@@ -164,7 +164,7 @@ describe('UpgradeableERC20', function () {
     const preUpgradeTotalSupply = await v1.totalSupply();
 
     await upgrades.upgradeBeacon(beacon, erc20, {
-      unsafeAllow: ['constructor'],
+      // unsafeAllow: ['constructor'],
     });
     const upgraded = erc20.attach(instance.address);
 
